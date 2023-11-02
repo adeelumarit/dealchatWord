@@ -569,6 +569,9 @@
 
     app.controller('DealChatCTRL', function ($scope, $mdDialog, $mdToast, $log,) {
 
+     var baseURL = "https://accountingsystemapi20231101183220.azurewebsites.net"
+
+
         //let userinfo = window.localStorage.getItem("userInfo")
         //userinfo = JSON.parse(userinfo)
         //  let userid = userinfo.id;
@@ -673,7 +676,7 @@
                 ProgressLinearActive();
                 $.ajax({
                     type: "get",
-                    url: "https://localhost:44371/api/Home/GetCompany/" + userid, // The URL of your controller action
+                    url: baseURL+"/api/Home/GetCompany/" + userid, // The URL of your controller action
                     //data: JSON.stringify(newItem),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -696,7 +699,7 @@
             function getuseDeals() {
                 $.ajax({
                     type: "get",
-                    url: "https://localhost:44371/api/Home/GetDeal/" + userid, // The URL of your controller action
+                    url: baseURL+"/api/Home/GetDeal/" + userid, // The URL of your controller action
                     //data: JSON.stringify(newItem),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -768,7 +771,7 @@
 
             $.ajax({
                 type: "get",
-                url: "https://localhost:44371/api/Home/ContractsByUserId/" + userid, // The URL of your controller action
+                url: baseURL+"/api/Home/ContractsByUserId/" + userid, // The URL of your controller action
                 //data: JSON.stringify(newItem),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -809,7 +812,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "https://localhost:44371/api/Home/AddDeal", // The URL of your controller action
+                    url: baseURL+"/api/Home/AddDeal", // The URL of your controller action
                     //data: JSON.stringify(dealData),
                     data: JSON.stringify(
                         {
@@ -849,7 +852,7 @@
                 ProgressLinearActive();
                 $.ajax({
                     type: "POST",
-                    url: "https://localhost:44371/api/Home/AddComapny", // The URL of your controller action
+                    url: baseURL+"/api/Home/AddComapny", // The URL of your controller action
                     //data: JSON.stringify(dealData),
                     data: JSON.stringify({
                         companyName: $scope.CompanyName,
@@ -895,7 +898,7 @@
                 var companyId = $scope.Selectedcompany
 
                 var settings = {
-                    "url": "https://localhost:44371/api/Home/AdChildUser/",
+                    "url": baseURL+"/api/Home/AdChildUser/",
 
                     "method": "POST",
                     "timeout": 0,
@@ -959,7 +962,7 @@
                 //  call api to gte the clauses
                 $.ajax({
                     type: "get",
-                    url: "https://localhost:44371/api/Home/getClause/" + ClauseOfContracts.id, // The URL of your controller action
+                    url: baseURL+"/api/Home/getClause/" + ClauseOfContracts.id, // The URL of your controller action
                     //data: JSON.stringify(newItem),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1083,7 +1086,7 @@
                 //  call api to get the taged clauses
                 $.ajax({
                     type: "get",
-                    url: "https://localhost:44371/api/Home/getTagClause?clauseid=" + data.id, // The URL of your controller action
+                    url: baseURL+"/api/Home/getTagClause?clauseid=" + data.id, // The URL of your controller action
                     //data: JSON.stringify(newItem),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
@@ -1137,7 +1140,7 @@
             $scope.Invite_NewUser = function () {
                 ProgressLinearActive()
                 var settings = {
-                    "url": "https://localhost:44371/api/Mail?body=" + clauseText,
+                    "url": baseURL+"/api/Mail?body=" + clauseText,
 
                     "method": "POST",
                     "timeout": 0,
