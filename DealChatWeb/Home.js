@@ -14,13 +14,13 @@ var app = angular.module('DealChat', ['ngMaterial', "ngRoute"], function () {
 app.config(function ($routeProvider) {
     $routeProvider
         .when("/", {
-            templateUrl: "/Templates/mainPage.html"
+            templateUrl: dialogueURL+"/Templates/mainPage.html"
         })
         .when("/Signup", {
-            templateUrl: "/Templates/Signup.html"
+            templateUrl: dialogueURL+"/Templates/Signup.html"
         })
         .when("/Login", {
-            templateUrl: "/Templates/Login.html"
+            templateUrl: dialogueURL+"/Templates/Login.html"
 
 
 
