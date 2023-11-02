@@ -2,7 +2,7 @@
 //var baseURL = "https://localhost:44371"
 var baseURL = "https://accountingsystemapi20231101183220.azurewebsites.net"
 var dialogueURL="https://adeelumarit.github.io/dealchatWord/DealChatWeb"
-
+//var dialogueURL = "https://localhost:44371"
 var app = angular.module('DealChat', ['ngMaterial', "ngRoute"], function () {
 
 
@@ -1281,61 +1281,65 @@ app.controller('DealChatCTRL', function ($scope, $mdDialog, $mdToast, $log, $loc
                     };
                     $scope.Save = function () {
                         ProgressLinearActive();
-                     
-                        $.ajax({
-                            type: "POST",
-                            url: baseURL+"/api/Home/NewContract", // The URL of your controller action
-                            data: JSON.stringify({
-                                "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-                                "contractName": $scope.ContractTitle,
-                                "contractDetail": $scope.ContractDescription,
-                                "dealid": selcteddealInfo.id,
-                                "userid": userid
-                            }),
-                            contentType: "application/json; charset=utf-8",
-                            //dataType: "json",
-                            success: function (data) {
-                                // Handle success, e.g., update UI, display message, etc.
-                                console.log("Item added succeGetContractClausesssfully:", data);
-                                $scope.GetClauses = data;
-                                Word.run(function (context) {
-                                    var properties = context.document.properties;
-                                    properties.customProperties.add("SelectedDeal", JSON.stringify(DealCustomProperty));
+                        if (selcteddealInfo.id) {
+                            $.ajax({
+                                type: "POST",
+                                url: baseURL + "/api/Home/NewContract", // The URL of your controller action
+                                data: JSON.stringify({
+                                    "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+                                    "contractName": $scope.ContractTitle,
+                                    "contractDetail": $scope.ContractDescription,
+                                    "dealid": selcteddealInfo.id,
+                                    "userid": userid
+                                }),
+                                contentType: "application/json; charset=utf-8",
+                                //dataType: "json",
+                                success: function (data) {
+                                    // Handle success, e.g., update UI, display message, etc.
+                                    console.log("Item added succeGetContractClausesssfully:", data);
+                                    $scope.GetClauses = data;
+                                    Word.run(function (context) {
+                                        var properties = context.document.properties;
+                                        properties.customProperties.add("SelectedDeal", JSON.stringify(DealCustomProperty));
 
-                                    properties.customProperties.add("SelectedContract", JSON.stringify(data));
+                                        properties.customProperties.add("SelectedContract", JSON.stringify(data));
 
-                                    localStorage.setItem('selectedContractforclause', JSON.stringify(data));
+                                        localStorage.setItem('selectedContractforclause', JSON.stringify(data));
 
-                                    if (!$scope.$$phase) {
-                                        $scope.$apply();
-                                    }
+                                        if (!$scope.$$phase) {
+                                            $scope.$apply();
+                                        }
 
+
+                                        $mdDialog.hide();
+                                        //getdefaultContracts()
+
+                                        ProgressLinearInActive();
+                                        window.location.reload();
+
+                                        loadToast("Contract added successfuly")
+                                        return context.sync();
+                                    }).catch(function (error) {
+                                        console.log(error);
+                                        ProgressLinearInActive()
+                                    });
+
+                                },
+                                error: function (error) {
+                                    // Handle error, e.g., display error message
+                                    console.error("Error adding item:", error);
+                                    loadToast("Error adding Contract")
 
                                     $mdDialog.hide();
-                                    //getdefaultContracts()
-
-                                    ProgressLinearInActive();
-                                    window.location.reload();
-
-                                    loadToast("Contract added successfuly")
-                                    return context.sync();
-                                }).catch(function (error) {
-                                    console.log(error);
-                                    ProgressLinearInActive()
-                                });
-
-                            },
-                            error: function (error) {
-                                // Handle error, e.g., display error message
-                                console.error("Error adding item:", error);
-                                loadToast("Error adding Contract")
-
-                                $mdDialog.hide();
 
 
-                            }
-                        });
-            
+                                }
+                            });
+                        } else {
+                            laodToast("Deal not selected")
+                            ProgressLinearInActive()
+
+                        }
                     };
 
 

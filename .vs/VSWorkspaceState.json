@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\DealChatWeb",
+    "\\DealChatWeb\\Images",
+    "\\DealChatWeb\\Templates"
   ],
-  "SelectedNode": "\\C:\\Users\\Asif computer\\Source\\Repos\\dealchatWord",
+  "SelectedNode": "\\DealChatWeb\\Templates\\DealChatWebPage.html",
   "PreviewInSolutionExplorer": false
 }
