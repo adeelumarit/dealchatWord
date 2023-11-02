@@ -1,6 +1,7 @@
 ﻿// <reference path="messageread.js" />
 //var baseURL = "https://localhost:44371"
 var baseURL = "https://accountingsystemapi20231101183220.azurewebsites.net"
+var dialogueURL="https://adeelumarit.github.io/dealchatWord/DealChatWeb"
 
 var app = angular.module('DealChat', ['ngMaterial', "ngRoute"], function () {
 
@@ -250,7 +251,7 @@ app.controller('mainpagectrl', function ($scope, $mdDialog, $mdToast, $log, $htt
 
 
 
-            Office.context.ui.displayDialogAsync('https://localhost:44312/Templates/DealChatWebPage.html', { height: 80, width: 80 },
+            Office.context.ui.displayDialogAsync(dialogueURL+'/Templates/DealChatWebPage.html', { height: 80, width: 80 },
                 function (asyncResult) {
                     dialog = asyncResult.value;
                     dialog.addEventHandler(Office.EventType.DialogMessageReceived, processMessage);
@@ -1023,7 +1024,7 @@ app.controller('mainpagectrl', function ($scope, $mdDialog, $mdToast, $log, $htt
          
 
                 Office.context.ui.displayDialogAsync(
-                    'https://localhost:44312/Templates/MailHtmlBody.html',
+                    dialogueURL+'/Templates/MailHtmlBody.html',
                     { height: 50, width: 50 },
                     function (result) {
                         var dialog = result.value;
@@ -1057,7 +1058,7 @@ app.controller('mainpagectrl', function ($scope, $mdDialog, $mdToast, $log, $htt
 
 
 
-            Office.context.ui.displayDialogAsync('https://localhost:44312/Templates/DealChatWebPage.html?userId=' + userid, { height: 80, width: 80 },
+            Office.context.ui.displayDialogAsync(dialogueURL+'/Templates/DealChatWebPage.html?userId=' + userid, { height: 80, width: 80 },
                 function (asyncResult) {
                     dialog = asyncResult.value;
                     dialog.addEventHandler(Office.EventType.DialogMessageReceived, processMessage);
