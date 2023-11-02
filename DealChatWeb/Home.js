@@ -10,6 +10,24 @@ var app = angular.module('DealChat', ['ngMaterial', "ngRoute"], function () {
 
 
 
+//app.config(function ($routeProvider) {
+//    $routeProvider
+//        .when("/", {
+//            templateUrl: "/Templates/mainPage.html"
+//        })
+//        .when("/Signup", {
+//            templateUrl: "/Templates/Signup.html"
+//        })
+//        .when("/Login", {
+//            templateUrl:  "/Templates/Login.html"
+
+
+
+//        })
+//        .when("/blue", {
+//            templateUrl: "blue.htm"
+//        });
+//});
 
 app.config(function ($routeProvider) {
     $routeProvider
