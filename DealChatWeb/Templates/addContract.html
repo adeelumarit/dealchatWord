@@ -1,0 +1,133 @@
+﻿
+
+<md-dialog aria-label="Changes List" style="min-width: 300px;">
+    <!--<md-toolbar style="background-color: #106EBE; ">
+        <h4 style="padding:3px">DealChat</h4>-->
+    <!--<div class="md-toolbar-tools" style="color:white;">
+        <md-button ng-click="closeDialog()" style="">Cancel</md-button>
+        <md-button style="">Save</md-button>
+    </div>-->
+    <!--</md-toolbar>-->
+    <div style="color: white; text-align: center; display: flex; height: 45px; align-content: flex-start; justify-content: center; align-items: center; flex-wrap: nowrap; background: #0f6cc6;">
+        <h3>New Contract</h3>
+
+
+
+    </div>
+    <md-divider></md-divider>
+
+    <md-dialog-content style="margin-top:20px;">
+
+        <div class="md-dialog-content" style="padding:5px;">
+            <form name="Form">
+                <div class="container">
+
+
+                    <div class="input-container">
+                        <!--<label for="contractTitle">Contract Title:</label>-->
+                        <input type="text" id="contractTitle" ng-model="ContractTitle" name="contractTitle" placeholder="Enter Contract Title">
+                    </div>
+                </div>
+
+
+
+                <div></div>
+                <div class="input-container">
+                    <!--<label for="contractTitle">Contract Description:</label>-->
+                    <textarea ng-model="ContractDescription" style="height: 113px"  placeholder="Enter Contract Details"></textarea>
+
+                </div>
+                <div class="input-container" style="display: flex;">
+                    <select style="padding: 12px; width: 100%; margin-bottom: 5px;"
+                            ng-model="SelectedDeals" ng-change="getSelectedDeals()">
+                        <option value="">Select Deal</option>
+                        <option ng-repeat="option in Deals" value="{{option}}">
+                            {{option.dealName}}
+                        </option>
+                    </select>
+
+
+
+
+
+                    <!--<md-input-container style=" width: 88%;">
+                        <label>Select Deal</label>
+                        <md-select ng-model="SelectedDeals" ng-change="getSelectedDeals()">
+                            <md-optgroup label="Deal">
+                                <md-option ng-repeat="option in Deals" ng-value="option"> {{option.dealName}}</md-option>
+                            </md-optgroup>
+                        </md-select>
+                    </md-input-container>-->
+                </div>
+
+
+
+            </form>
+
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row" style=" justify-content: space-between; ">
+        <!--style="background: #0f6cc6;color:white"-->
+        <md-button class="md-primary" ng-click="closeDialog()">
+            Cancel
+        </md-button>
+        <md-button class="custom-button md-primary" ng-disabled="!ContractDescription || !ContractTitle" ng-click="Save('useful')" style="margin-right: 20px;">
+            Save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+
+<style>
+    .custom-button[disabled] {
+        background-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+    }
+    textarea {
+        width: 100%;
+        max-width: 500px; /* Adjust the max-width as needed */
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    md-input-container {
+        display: inline-block;
+        position: relative;
+        padding: 2px;
+        margin: -9px 0;
+        vertical-align: middle;
+    }
+
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .input-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+        .input-container input {
+            width:  93%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            padding: 1px;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+        }
+    }
+</style>
+

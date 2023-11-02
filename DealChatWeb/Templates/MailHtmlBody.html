@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <div id="content">
+
+
+    </div>
+</body>
+</html>
+
+<script>
+    // Handle messages received from the add-in
+    Office.onReady(function (info) {
+    /*    if (info.host === Office.MailboxEnums.HostType.Outlook) {*/
+            // Get the query parameters from the URL
+        //    var queryParams = new URLSearchParams(window.location.search);
+        //    var encodedHtmlContent = queryParams.get('htmlcontent');
+
+        //    // Decode the HTML content
+        //    var htmlContent = decodeURIComponent(encodedHtmlContent);
+
+        //    // Display the HTML content in your dialog box
+        //document.getElementById('content').innerHTML = htmlContent;
+
+
+        let htmlContent = window.localStorage.getItem('htmlContent');
+
+        htmlContent = JSON.parse(htmlContent)
+        console.log('HTML content:', htmlContent);
+        document.getElementById('content').innerHTML = htmlContent;
+
+
+        // Assume you have a function to fetch the HTML content from the server
+      //  fetchHtmlContentFromServer(function (htmlContent) {
+            // Use the retrieved HTML content
+       // });
+
+        //}
+    });
+
+    </script>

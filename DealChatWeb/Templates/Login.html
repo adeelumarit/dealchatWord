@@ -1,0 +1,69 @@
+﻿<div ng-controller="loginctrl">
+    <md-toolbar class="custom-toolbar">
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate>DealChat</h2>
+        </div>
+    </md-toolbar>
+    <md-card class="custom-card" style="display:math">
+        <div layout="column">
+
+            <div style="display:flex;justify-content:center">
+
+                <h3>Deal Chat</h3>
+
+            </div>
+
+        </div>
+
+
+        <div layout="column" style="padding: 8px; margin-top: -12px;">
+
+
+            <md-input-container class="md-block" style="margin-bottom: -19px;">
+                <input type="email" placeholder="Email" ng-model="useremail">
+            </md-input-container>
+
+
+        </div>
+
+        <div layout="column" style="padding:8px">
+
+            <md-input-container class="md-block custom-input">
+                <input type="password" placeholder="Password "  ng-model="password">
+            </md-input-container>
+
+        </div>
+
+        <div layout="column">
+
+            <div class="button-container" style="display: flex; justify-content: center ">
+                <md-button class="md-raised md-primary custom-button" ng-click="login()" style="    width: 69%;">Sign In</md-button>
+            </div>
+
+
+        </div>
+        
+        <div layout="column">
+
+            <div class="button-container" style="display: flex; justify-content: center ">
+                <span>Don't have account
+                    <a  style="cursor: pointer; color: #0f6cc6; text-decoration: underline; " ng-click="GotoSingup()">SignUp</a>
+                </span>
+            </div>
+
+
+        </div>
+    </md-card>
+</div>
+<style>
+    .custom-toolbar {
+        background-color: #0f6cc6;
+        color: white;
+    }
+
+ /*   @media screen and (max-width: 600px) {
+        .custom-card {
+            margin: 20px;
+        }*/
+    
+</style>

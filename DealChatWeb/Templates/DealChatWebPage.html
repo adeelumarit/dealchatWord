@@ -1,0 +1,1360 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+
+
+
+
+
+    <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js" type="text/javascript"></script>
+
+    <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-messages.min.js"></script>
+    <!--Angular Material Library-->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+    <!--jquery script-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!--google font icon library-->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+
+    <!--<script src="Scripts/jwt-decode-2.2.0.js" type="text/javascript"></script>-->
+
+
+    <style>
+        md-card md-card-content {
+            display: block;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body ng-app="DealChat" ng-controller="DealChatCTRL">
+
+    <!-- <div layout="row" layout-sm="column" layout-align="space-around" id="Startloader"
+        style="z-index: 100 !important;position:fixed;display:none">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+    <div layout="row" layout-sm="column" layout-align="space-around" id="StartDloader"
+        style="z-index: 100 !important;position:fixed;display:none">
+        <md-progress-circular class="downloadProgress" md-mode="determinate"
+            value="{{determinateValue}}"></md-progress-circular>
+        <span
+            style="width:46px;text-align:center; margin-left:10px;margin-top:16px;position:fixed;">{{determinateValue}}%</span>
+    </div>
+    <div id="StartProgressLinear"
+        style="z-index: 100 !important;position:fixed;display:none; margin:250px 7% 0 7%; width: 85%;">
+        <md-progress-Startloader md-mode="Indeterminate" ng-disabled="showProgressLinear"></md-progress-Startloader>
+        <div style="margin: 7px auto 0 auto;"><span>{{progressText}}</span></div>
+    </div>
+
+    <div id="ProgressBgDiv"
+        style=" position: fixed; top: 0; left: 0; background-color: #ffffff; opacity: 0.8; display: none; width: 100%; height: 100%; z-index: 99 !important;">
+
+    </div> -->
+
+
+
+    <div layout="row" layout-sm="column" layout-align="space-around" id="Startloader"
+         style="z-index: 100 !important; position: fixed; display: none; top: 50%; left: 50%;">
+        <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
+
+    <div layout="row" layout-sm="column" layout-align="space-around" id="StartDloader"
+         style="z-index: 100 !important; position: fixed; display: none; top: 50%; left: 50%;">
+        <md-progress-circular class="downloadProgress" md-mode="determinate"
+                              value="{{determinateValue}}"></md-progress-circular>
+        <span style="width: 46px; text-align: center; margin-left: 10px; margin-top: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">{{determinateValue}}%</span>
+    </div>
+
+    <div id="StartProgressLinear"
+         style="z-index: 100 !important; position: fixed; display: none; top: 50%; left: 50%; width: 100%;">
+        <md-progress-circular md-mode="indeterminate" ng-disabled="showProgressLinear"></md-progress-circular>
+        <div style="margin: 9px auto 0 auto;"><span>{{progressText}}</span></div>
+    </div>
+
+    <div id="ProgressBgDiv"
+         style="position: fixed; top: 0; left: 0; background-color: #ffffff; opacity: 0.8; display: none; width: 100%; height: 100%; z-index: 99 !important;">
+    </div>
+
+
+
+    <md-toolbar class="md-primary">
+        <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+            <h3>DealChat</h3>
+
+            <div layout="row" class="shownavbtn" layout-align="end center" ng-hide="hideActionBTNS">
+                <md-button class="md-raised md-primary" ng-click="dealFormVisibility()">
+                    <md-icon>add</md-icon>
+                    Deal
+                </md-button>
+                <md-button class="md-raised md-primary" ng-click="countryFormVisibility()">
+                    <md-icon>add_business</md-icon> Company
+                </md-button>
+                <md-button class="md-raised md-primary" ng-click="ShowPersonDetail()">
+                    <md-icon style="margin-right: 6px;">person_add</md-icon>Person
+                </md-button>
+                <md-button class="md-raised md-primary" ng-click="contractclausesFormVisibility()">
+                    <md-icon style="margin-right: 6px;">contact_mail</md-icon>Counter Party
+                </md-button>
+
+                <!--<md-button class="md-raised md-primary" ng-click="Logout()">
+                    <md-icon style="margin-right: 6px;">logout</md-icon>
+                    Logout-->
+
+            </div>
+
+
+
+
+
+
+
+            <md-menu md-offset="0 -7" class="showmenubtn">
+                <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+                    <md-icon>menu</md-icon>
+                </md-button>
+                <md-menu-content width="2">
+                    <md-menu-item>
+                        <md-button ng-click="dealFormVisibility()">
+                            <md-icon>add</md-icon>
+
+                            <span>
+
+                                Deal
+                            </span>
+                        </md-button>
+
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click="countryFormVisibility()">
+                            <md-icon>add_business</md-icon>
+
+                            <span>Company</span>
+                            <!-- <md-icon style=" float: right; margin-top: 6%;" class="material-symbols-outlined">network_node</md-icon> -->
+                        </md-button>
+
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click="ShowPersonDetail()">
+                            <md-icon style="  -webkit-transform: scaleX(-1);
+                            transform: scaleX(-1);">person_add</md-icon>
+                            <span>Person</span>
+
+                        </md-button>
+
+                    </md-menu-item>
+                    <md-menu-item>
+                        <md-button ng-click="contractclausesFormVisibility()">
+                            <md-icon>contact_mail</md-icon><span>
+                                Counter Party
+                            </span>
+                        </md-button>
+
+                    </md-menu-item>
+
+                    <md-menu-item>
+                        <md-button ng-click="Logout()">
+                            <md-icon>logout</md-icon>
+                            Logout
+                        </md-button>
+
+                    </md-menu-item>
+                </md-menu-content>
+            </md-menu>
+
+        </div>
+
+
+    </md-toolbar>
+
+    <div layout="row" ng-show="dealForm" style=" justify-content: center;">
+
+        <div>
+            <div style="display: flex; justify-content: center;margin-top:12px">
+
+                <label for="contractTitle" style="font-weight: 700;">Add Deal:</label>
+            </div>
+            <form name="Form">
+
+                <div class="container">
+
+
+                    <div class="input-container">
+                        <!--<label for="contractTitle">Contract Title:</label>-->
+                        <input type="text" id="contractTitle" ng-model="dealName" name="contractTitle"
+                               placeholder="Deal Name" style="margin-bottom: 5px;">
+
+
+                        <!--<label for="contractTitle">Contract Description:</label>-->
+                        <textarea ng-model="dealDetails" placeholder=" Deal Details"
+                                  style=" width: 97%; height: 30vh;"></textarea>
+
+
+                    </div>
+
+                    <div id="adddealbtn">
+                        <md-button style="width: 94%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; "
+                                   ng-click="Add_Deal()">
+                            Add Deal
+                        </md-button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </form>
+        </div>
+    </div>
+
+
+    <!--Login form for user  -->
+
+    <div layout="row" ng-show="Loginform" class="login-container">
+
+        <div id="loginform" class="login-form">
+            <div class="login-header">
+                <label for="Loginform" class="form-label">Deal Chat Login</label>
+            </div>
+            <form name="Form" class="form">
+
+                <div class="container">
+
+
+                    <div class="input-container">
+                        <input type="email" id="logEmail" ng-model="logEmail" name="contractTitle"
+                               placeholder="Enter Email" class="form-input">
+
+                        <input type="password" id="password" ng-model="password" name="contractTitle"
+                               placeholder="Enter Password" class="form-input">
+                    </div>
+
+                    <div class="login-button-container" style=" display: flex;
+                    justify-content: center;">
+                        <md-button class="login-button" style="    background: #0f6cc6;
+                        color: white;" ng-click="login()">
+                            Login
+                        </md-button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- <div layout="row" ng-show="Loginform" style=" justify-content: center;">
+
+        <div id="loginform">
+            <div style="display: flex; justify-content: center;margin-top:12px">
+
+                <label for="Loginform" style="font-weight: 700;">Deal Chat Login:</label>
+            </div>
+            <form name="Form">
+
+                <div class="container">
+
+
+                    <div class="input-container">
+                       <label for="contractTitle">Contract Title:</label>
+                        <input type="email" id="logEmail" ng-model="logEmail" name="contractTitle"
+                            placeholder="Enter Email" style="margin-bottom: 5px;">
+
+                        <input type="password" id="password" ng-model="password" name="contractTitle"
+                            placeholder="Enter Email" style="margin-bottom: 5px;">
+
+                        <label for="contractTitle">Contract Description:</label>
+                         <textarea ng-model="CompanyDetails" placeholder=" Company Details" style=" width: 97%; height: 30vh;"></textarea>
+
+
+                    </div>
+
+                    <div>
+                        <md-button
+                            style="width: 94%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; "
+                            ng-click="login()">
+                            Login
+                        </md-button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </form>
+        </div>
+    </div> -->
+    <!--Login form for user  -->
+    <!-- ////////////////////////input2///////////////////////// -->
+
+    <div layout="row" ng-show="countryForm" style=" justify-content: center;">
+
+        <div>
+            <div style="display: flex; justify-content: center;margin-top:12px">
+
+                <label for="contractTitle" style="font-weight: 700;">Add Company:</label>
+            </div>
+            <form name="Form">
+
+                <div class="container">
+
+
+                    <div class="input-container">
+                        <!--<label for="contractTitle">Contract Title:</label>-->
+                        <input type="text" id="CompanyNameid" ng-model="CompanyName" name="Company Name"
+                               placeholder="Company Name" style="margin-bottom: 5px;">
+
+
+                        <!--<label for="contractTitle">Contract Description:</label>-->
+                        <textarea ng-model="CompanyDetails" placeholder=" Company Details"
+                                  style=" width: 97%; height: 30vh;"></textarea>
+
+
+                    </div>
+
+                    <div>
+                        <md-button style="width: 94%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; "
+                                   ng-click="Add_Company()">
+                            Add Company
+                        </md-button>
+
+
+                    </div>
+                </div>
+
+
+
+
+
+
+
+            </form>
+        </div>
+    </div>
+    <!--add persons-->
+    <div layout="row" ng-show="PersonDetailForm" style=" justify-content: center;">
+
+        <div>
+            <div style="display: flex; justify-content: center;margin-top:12px">
+
+                <label for="contractTitle" style="font-weight: 700;">Person Details:</label>
+            </div>
+            <form name="Form">
+
+                <div class="container">
+
+
+                    <div class="input-container">
+                        <!--<label for="contractTitle">Contract Title:</label>-->
+                        <input type="text" id="" ng-model="Name" name="" placeholder="Name"
+                               style="margin-bottom: 5px;">
+
+                        <input type="text" id="" ng-model="Email" name="" placeholder="Email"
+                               style="margin-bottom: 5px;">
+
+                        <input type="text" id="" ng-model="ContactNumber" name=""
+                               placeholder="Contact number" style="margin-bottom: 5px;">
+                        <div style="margin-top:12px">
+
+
+                            <label>Select Company:</label>
+
+                            <div class="input-container" style="display: flex;">
+                                <select style="padding: 12px; width: 97%; margin-bottom: 5px;" name=""
+                                        ng-model="Selectedcompany" ng-change="getSelectedCompan(option)">
+                                    <option value="">Company</option>
+                                    <option ng-repeat="option in Companies" value="{{option.id}}">
+                                        {{option.companyName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!--<label for="contractTitle">Contract Description:</label>-->
+                        <!--<textarea ng-model="ContractDescription" placeholder="Enter Company Details" style=" width: 97%; height: 30vh;"></textarea>-->
+
+
+                    </div>
+
+                    <div>
+                        <md-button style="width: 94%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; "
+                                   ng-click="Add_ChilUser()">
+                            Add Person
+                        </md-button>
+
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!--join every info-->
+    <div ng-show="contractClauses">
+        <div layout="row" style=" padding: 19px; justify-content: space-between;">
+            <div flex="10"></div>
+            <div flex="30" flex-gt-sm="50">
+
+
+                <div class="input-container">
+                    <select style="padding: 12px;width:100%" ng-change="getSelectedDeal()"
+                            ng-model="selectedDeal">
+                        <option value="" style="font-weight: bold;">Deal</option>
+                        <option ng-repeat="option in Deals" value="{{option}}">{{option.dealName}}</option>
+                    </select>
+                </div>
+                <div class="input-container" style="display: flex;">
+                    <select style="padding: 12px; width: 100%; margin-bottom: 5px;" ng-model="GetClauses"
+                            ng-change="GetContractClauses()">
+                        <option value="" style="font-weight: bold;">Contract</option>
+                        <option ng-repeat="optns in dealContracts" value="{{optns}}">{{optns.contractName}}</option>
+                    </select>
+                </div>
+
+                <!-- <div layout="column">
+                    <md-input-container>
+                        <label>Select Clause</label>
+                    <md-select style="padding: 12px; width: 100%; margin-bottom: 24px;"
+                        ng-change="getSelectedClause_Text()" ng-model="SelectedClause_Text" multiple>
+                        <md-optgroup label="Clauses">
+                        <md-option value="" style="font-weight: bold;">Clause</md-option>
+                        <md-option ng-repeat="cls in Clause" value="{{cls.id}}">{{cls.name}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+
+
+
+                </div> -->
+
+
+                <div layout="column">
+                    <select style="padding: 12px; width: 100%; margin-bottom: 24px;"
+                            ng-change="getSelectedClause_Text()" ng-model="SelectedClause_Text">
+                        <option value="" style="font-weight: bold;">Clause</option>
+                        <option ng-repeat="cls in Clause" value="{{cls}}">{{cls.name}}</option>
+                    </select>
+                </div>
+
+                <div layout="column">
+                    <select style="padding: 12px; width: 100%; margin-bottom: 24px;"
+                            ng-change="getSelectedClause_tag()" ng-model="SelectedClause_Tag">
+                        <option value="" style="font-weight: bold;">TagClauses</option>
+                        <option ng-repeat="tgs in clauseTags" style="   white-space: nowrap; overflow: hidden;text-overflow: ellipsis;" value="{{tgs}}">{{tgs.emailbody}}</option>
+                    </select>
+                </div>
+
+
+            </div>
+            <div flex="10"></div>
+
+            <div flex="30">
+                <div layout="column">
+
+                    <div class="input-container" style="display: flex;">
+                        <select style="padding: 12px; width: 99%; margin-bottom: 5px;"
+                                ng-model="SelectCompanyforInvite" ng-change="getSelectedCompanyForInvite()">
+                            <option value="">Select Company</option>
+                            <option ng-repeat="option in Companies" value="{{option}}">
+                                {{option.companyName}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div layout="column">
+                        <select style="padding: 12px; width: 99%; margin-bottom: 5px;"
+                                ng-model="SelctedChidUser" ng-change="getSelecteduserInfo()">
+                            <option value="">Select Person</option>
+                            <option ng-repeat="options in ChildUserData" value="{{options}}">{{options.name}}</option>
+                        </select>
+                    </div>
+                    <div layout="column">
+
+                        <div class="input-container" style="margin-top: 17px;width:100%">
+                            <!--<label for="contractTitle">Contract Title:</label>-->
+                            <input type="email" id="email" ng-model="SelectedUserEmail" name="" placeholder="Email"
+                                   style="margin-bottom: 5px;">
+                        </div>
+
+                        <!-- <select style="padding: 12px; width: 100%; margin-bottom: 5px;" name="users"
+                            ng-model="userSelect">
+                            <option value="">Email</option>
+                            <option ng-repeat="option in arrlist" value="{{option.userid}}">{{option.name}}</option>
+                        </select> -->
+                    </div>
+                </div>
+
+
+            </div>
+            <div flex="10"></div>
+
+
+
+        </div>
+        <div layout="row">
+            <div flex="10">
+
+            </div>
+
+
+            <div flex="40" style="display: flex;margin-left: 3%;
+            margin-top: 19vh;">
+                <md-button class="buttonstyling"
+                           style="width: 73%; min-width: 100px; background: rgb(63,81,181);; color: white; border: 3px; border-radius: 10px; "
+                           ng-click="Invite_NewUser()">
+                    Invite CounterParties to Approve
+                </md-button>
+            </div>
+            <div flex="50"></div>
+
+
+        </div>
+
+
+
+
+
+
+        <!-- <md-input-container>
+            <label>Toppings</label>
+            <md-select ng-model="selectedToppings" >
+              <md-optgroup label="Meats">
+                <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'meat'}">
+                  {{topping.name}}</md-option>
+              </md-optgroup>
+                 <md-optgroup label="Veggies">
+                <md-option ng-value="topping.name" ng-repeat="topping in toppings | filter: {category: 'veg'}">
+                  {{topping.name}}</md-option>
+              </md-optgroup>
+            </md-select>
+          </md-input-container> -->
+        <!-- <p ng-if="selectedToppings">You ordered a {{size.toLowerCase()}} pizza with
+          {{printSelectedToppings()}}.</p>
+        </div> -->
+    </div>
+</body>
+
+</html>
+<script>
+
+    var app = angular.module('DealChat', ['ngMaterial'], function () {
+
+
+    });
+
+
+
+    app.controller('DealChatCTRL', function ($scope, $mdDialog, $mdToast, $log,) {
+
+        //let userinfo = window.localStorage.getItem("userInfo")
+        //userinfo = JSON.parse(userinfo)
+        //  let userid = userinfo.id;
+        //var userid;
+        $scope.contractClauses = true;
+
+
+        //if (userinfo) {
+        //    userid = userinfo.id;
+        //    $scope.hideActionBTNS = false
+
+
+
+        //}
+        //if (userinfo) {
+        //    // if (userinfo.id) {
+        //    $scope.Loginform = false
+
+
+        //    // }
+
+        //} else {
+        //    $scope.hideActionBTNS = true
+
+        //    $scope.dealForm = false;
+        //    $scope.countryForm = false;
+        //    $scope.contractClauses = false;
+        //    $scope.PersonDetailForm = false;
+        //    $scope.Loginform = true
+
+
+        //}
+        function getUrlParameter(name) {
+            name = name.replace(/[\[\]]/g, "\\$&");
+            const regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)");
+            const results = regex.exec(window.location.href);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+
+        // Retrieve the userId parameter
+        const userid = getUrlParameter("userId");
+
+        // Now, you can use the userId variable in your code
+        console.log("User ID:", userid);
+        Office.onReady(function () {
+            $scope.dealForm = false; // Initially, the form is not visible
+
+            // Function to toggle the form visibility
+            $scope.dealFormVisibility = function () {
+                $scope.dealForm = !$scope.dealForm;
+                $scope.countryForm = false;
+                $scope.contractClauses = false;
+                $scope.PersonDetailForm = false;
+
+            };
+            $scope.countryForm = false; // Initially, the form is not visible
+
+            // Function to toggle the form visibility
+            $scope.countryFormVisibility = function () {
+                $scope.countryForm = !$scope.countryForm;
+                $scope.contractClauses = false;
+                $scope.dealForm = false;
+                $scope.PersonDetailForm = false;
+
+
+            };
+            // $scope.contractClauses = true; // Initially, the form is not visible
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+            // Function to toggle the form visibility
+            $scope.contractclausesFormVisibility = function () {
+                $scope.contractClauses = !$scope.contractClauses;
+                $scope.countryForm = false;
+                $scope.dealForm = false;
+                $scope.PersonDetailForm = false;
+                getuseDeals()
+
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+
+            };
+            $scope.PersonDetailForm = false;
+
+            $scope.ShowPersonDetail = function () {
+                getuseCompany();
+                $scope.PersonDetailForm = !$scope.PersonDetailForm;
+                $scope.countryForm = false;
+                $scope.contractClauses = false;
+
+                $scope.dealForm = false;
+            };
+            // Add any initialization code for your dialog here.
+
+            //get company
+            getuseCompany()
+            getuseDeals()
+            function getuseCompany() {
+                ProgressLinearActive();
+                $.ajax({
+                    type: "get",
+                    url: "https://localhost:44371/api/Home/GetCompany/" + userid, // The URL of your controller action
+                    //data: JSON.stringify(newItem),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response)
+                        $scope.Companies = response
+                        ProgressLinearInActive()
+
+                        console.log($scope.Companies)
+                    },
+                    error: function (error) {
+                        ProgressLinearInActive()
+                        // Handle error, e.g., display error message
+                        console.error("Error adding item:", error);
+                    }
+                });
+
+            }
+            //get Deals
+            function getuseDeals() {
+                $.ajax({
+                    type: "get",
+                    url: "https://localhost:44371/api/Home/GetDeal/" + userid, // The URL of your controller action
+                    //data: JSON.stringify(newItem),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response)
+                        $scope.Deals = response
+                        ProgressLinearInActive()
+
+                        console.log($scope.Companies)
+                    },
+                    error: function (error) {
+                        ProgressLinearInActive()
+                        // Handle error, e.g., display error message
+                        console.error("Error adding item:", error);
+                    }
+                });
+
+            }
+
+
+            //$scope.login = function (ev) {
+            //    ProgressLinearActive();
+            //    var userObject = {
+
+            //        email: $scope.email,
+            //        password: $scope.password
+            //        // Other properties of the user object
+            //    };
+
+            //    var settings = {
+            //        "url": "https://localhost:44371/api/Home/Login",
+            //        "method": "POST",
+            //        "timeout": 0,
+            //        "headers": {
+            //            "Content-Type": "application/json"
+            //        },
+            //        "data": JSON.stringify({
+
+            //            email: $scope.logEmail,
+            //            password: $scope.password
+            //        }),
+            //    };
+
+            //    $.ajax(settings).done(function (response) {
+            //        console.log(response);
+            //        window.localStorage.setItem("userInfo", JSON.stringify(response))
+            //        loadToast("Login Successful")
+            //        $scope.dealForm = !$scope.dealForm;
+            //        $scope.countryForm = false;
+            //        $scope.contractClauses = false;
+            //        $scope.PersonDetailForm = false;
+            //        $scope.Loginform = false
+            //        $scope.hideActionBTNS = false
+            //        window.location.reload()
+            //        ProgressLinearInActive()
+
+
+            //    }).fail(function (error) {
+            //        ProgressLinearInActive()
+            //        loadToast("error login")
+            //        console.log(error)
+            //        //loadToast(error)
+
+            //    });
+
+
+            //}
+
+
+            $.ajax({
+                type: "get",
+                url: "https://localhost:44371/api/Home/ContractsByUserId/" + userid, // The URL of your controller action
+                //data: JSON.stringify(newItem),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response)
+                    $scope.Contracts = response
+                    if ($scope.Contracts.length <= 0) {
+                        $scope.clauseTags = []
+
+
+                    }
+                    ProgressLinearInActive()
+
+                    console.log($scope.Contracts)
+                },
+                error: function (error) {
+                    $scope.clauseTags = []
+
+                    ProgressLinearInActive()
+                    // Handle error, e.g., display error message
+                    console.error("Error adding item:", error);
+                }
+            });
+
+
+            // Called when dialog signs in the user.
+            //function userSignedIn() {
+            //    Office.context.ui.messageParent(true.toString());
+            //}
+
+
+            ////////api calls here
+
+            /// ad the new deal
+            $scope.Add_Deal = function () {
+
+                ProgressLinearActive();
+
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:44371/api/Home/AddDeal", // The URL of your controller action
+                    //data: JSON.stringify(dealData),
+                    data: JSON.stringify(
+                        {
+                            dealName: $scope.dealName,
+                            dealDetail: $scope.dealDetails,
+                            userid: userid
+                        }
+                    ),
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+                        // Handle success, e.g., update UI, display message, etc.
+                        console.log("Deal added successfully:", data);
+
+
+
+                        ProgressLinearInActive()
+                        loadToast("Deal added successfuly")
+                    },
+                    error: function (error) {
+                        // Handle error, e.g., display error message
+                        console.error("Error adding item:", error);
+                        loadToast("Error adding Deal")
+
+                        $mdDialog.hide();
+
+
+                    }
+                });
+
+            }
+
+            /// add new new company
+
+            $scope.Add_Company = function () {
+
+
+                ProgressLinearActive();
+                $.ajax({
+                    type: "POST",
+                    url: "https://localhost:44371/api/Home/AddComapny", // The URL of your controller action
+                    //data: JSON.stringify(dealData),
+                    data: JSON.stringify({
+                        companyName: $scope.CompanyName,
+                        companyDetail: $scope.CompanyDetails,
+                        userid: userid
+                    }),
+                    contentType: "application/json; charset=utf-8",
+                    //dataType: "json",
+                    success: function (data) {
+                        // Handle success, e.g., update UI, display message, etc.
+                        console.log("Company added successfully:", data);
+
+                        getuseCompany()
+
+                        ProgressLinearInActive()
+                        loadToast("Company added successfuly")
+                    },
+                    error: function (error) {
+                        // Handle error, e.g., display error message
+                        ProgressLinearInActive()
+
+                        console.error("Error adding Company:", error);
+                        loadToast("Error adding Company")
+
+                        $mdDialog.hide();
+
+
+                    }
+                });
+
+            }
+
+            $scope.getSelectedCompan = function (selectedObject) {
+
+                console.log($scope.Selectedcompany)
+                console.log(selectedObject)
+
+            }
+
+            $scope.Add_ChilUser = function () {
+                ProgressLinearActive()
+
+                var companyId = $scope.Selectedcompany
+
+                var settings = {
+                    "url": "https://localhost:44371/api/Home/AdChildUser/",
+
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({
+
+                        name: $scope.Name,
+                        email: $scope.Email,
+                        contactNumber: $scope.ContactNumber,
+                        companyid: companyId,
+                        userid: userid
+
+                    }),
+                };
+
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+                    loadToast("user added successfuly")
+                    ProgressLinearInActive()
+
+
+                }).fail(function (error) {
+                    ProgressLinearInActive()
+                    loadToast("error addin user")
+                    console.log(error)
+                    //loadToast(error)
+
+                });
+            }
+
+
+            // $scope.selectedDealChanged = false;
+            $scope.getSelectedDeal = function () {
+                let deal_data = $scope.selectedDeal;
+                deal_data = JSON.parse(deal_data)
+                $scope.dealContracts = deal_data.dealList;
+                // $scope.selectedDealChanged = true;
+                console.log(deal_data)
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+                return;
+
+            }
+
+
+            $scope.GetContractClauses = function (selectedDealChanged) {
+
+
+                console.log($scope.GetClauses)
+                // Only execute the code if the deal has changed
+                // $scope.selectedDealChanged = false; // Reset the flag
+                // Your existing code here
+
+                let ClauseOfContracts = JSON.parse($scope.GetClauses)
+                console.log(ClauseOfContracts)
+
+
+                //  call api to gte the clauses
+                $.ajax({
+                    type: "get",
+                    url: "https://localhost:44371/api/Home/getClause/" + ClauseOfContracts.id, // The URL of your controller action
+                    //data: JSON.stringify(newItem),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response)
+                        $scope.Clause = response
+
+
+
+                        ProgressLinearInActive()
+
+                        // console.log($scope.Companies)
+                    },
+                    error: function (error) {
+                        ProgressLinearInActive()
+                        // Handle error, e.g., display error message
+                        console.error("Error adding item:", error);
+                    }
+                });
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+                ProgressLinearActive();
+
+
+
+
+                // $scope.SelectedUserEmail = userEmail.email
+
+
+
+            }
+
+
+
+            $scope.getSelectedCompanyForInvite = function () {
+
+                let userList = JSON.parse($scope.SelectCompanyforInvite)
+                userList = userList.childuserList;
+                $scope.ChildUserData = userList
+
+                console.log(userList)
+
+
+            }
+
+            $scope.getSelecteduserInfo = function () {
+                let userEmail = JSON.parse($scope.SelctedChidUser)
+
+                $scope.SelectedUserEmail = userEmail.email
+
+
+            }
+            // $scope.toppings = [
+            //     { category: 'meat', name: {id:1,name:'Pepperoni'} },
+            //     { category: 'meat', name:{id:1,name:'Pepperoni'} },
+            //     { category: 'meat', name: {id:1,name:'Pepperoni'} },
+            //     { category: 'meat', name: 'Bacon' },
+            //     { category: 'veg', name: 'Mushrooms' },
+            //     { category: 'veg', name: 'Onion' },
+            //     { category: 'veg', name: 'Green Pepper' },
+            //     { category: 'veg', name: 'Green Olives' }
+            //   ];
+            //   $scope.selectedToppings = [];
+            //   $scope.printSelectedToppings = function printSelectedToppings() {
+            //     var numberOfToppings = this.selectedToppings.length;
+
+            //     // If there is more than one topping, we add an 'and'
+            //     // to be grammatically correct. If there are 3+ toppings,
+            //     // we also add an oxford comma.
+            //     if (numberOfToppings > 1) {
+            //       var needsOxfordComma = numberOfToppings > 2;
+            //       var lastToppingConjunction = (needsOxfordComma ? ',' : '') + ' and ';
+            //       var lastTopping = lastToppingConjunction +
+            //           this.selectedToppings[this.selectedToppings.length - 1];
+            //       return this.selectedToppings.slice(0, -1).join(', ') + lastTopping;
+            //     }
+
+            //     return this.selectedToppings.join('');
+            //   };
+            var clausearray = [];
+            $scope.getSelectedClause_Text = function () {
+                console.log($scope.SelectedClause_Text)
+                // var numberOfToppings = $scope.SelectedClause_Text.length;
+                // function removeBackslashes(numberOfToppings) {
+                //     return numberOfToppings.replace(/\\/g, '');
+                //   }
+
+                //   // Process each string in the array
+                //   const outputArray =JSON.parse( $scope.SelectedClause_Text.map(removeBackslashes));
+                //     console.log(outputArray);
+
+                // Print the result
+                //   outputArray.forEach(item => {
+                //     console.log(JSON.parse(item));
+
+                //   });
+                // If there is more than one topping, we add an 'and'
+                // to be grammatically correct. If there are 3+ toppings,
+                // we also add an oxford comma.
+                //             if (numberOfToppings > 1) {
+                //               var needsOxfordComma = numberOfToppings > 2;
+                //               var lastToppingConjunction = (needsOxfordComma ? ',' : '') + ' and ';
+                //               var lastTopping = lastToppingConjunction +
+                //               $scope.SelectedClause_Text[$scope.SelectedClause_Text.length - 1];
+                //             //   console.log( $scope.SelectedClause_Text.slice(0, -1).join(', ') + lastTopping)
+                //             }
+                //             let selectedclause = $scope.SelectedClause_Text.join('')
+
+                // console.log(selectedclause)
+                // clausearray.push($scope.SelectedClause_Text)
+                // console.log(clausearray)
+                // let object  = JSON.parse($scope.SelectedClause_Text)
+                let data = JSON.parse($scope.SelectedClause_Text)
+                // console.log(object)
+
+
+                // clauseText = data.emailbody
+                // console.log(clauseText)
+
+                //  call api to get the taged clauses
+                $.ajax({
+                    type: "get",
+                    url: "https://localhost:44371/api/Home/getTagClause?clauseid=" + data.id, // The URL of your controller action
+                    //data: JSON.stringify(newItem),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response)
+                        $scope.clauseTags = response
+
+
+
+                        ProgressLinearInActive()
+
+                        // console.log($scope.Companies)
+                    },
+                    error: function (error) {
+                        ProgressLinearInActive()
+
+                        $scope.clauseTags = []
+                        if (!$scope.$$phase) {
+                            $scope.$apply();
+                        }
+
+                        // Handle error, e.g., display error message
+                        console.error("Error adding item:", error);
+                    }
+                })
+
+
+            }
+
+
+
+
+
+
+            var clauseText = "";
+
+            $scope.getSelectedClause_tag = function () {
+
+                console.log($scope.SelectedClause_Tag)
+
+                let data = JSON.parse($scope.SelectedClause_Tag)
+                clauseText = data.emailbody;
+
+            }
+
+
+
+
+
+
+            $scope.Invite_NewUser = function () {
+                ProgressLinearActive()
+                var settings = {
+                    "url": "https://localhost:44371/api/Mail?body=" + clauseText,
+
+                    "method": "POST",
+                    "timeout": 0,
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "data": JSON.stringify({
+                        "to": [
+                            $scope.SelectedUserEmail
+                        ],
+                        "subject": "Approvel Invition",
+                        "from": "string"
+                    }),
+                };
+
+                $.ajax(settings).done(function (response) {
+                    console.log(response);
+                    loadToast("Invitation sent Successfuly")
+                    ProgressLinearInActive()
+
+
+                }).fail(function (error) {
+                    ProgressLinearInActive()
+                    loadToast("error Invitation sending")
+                    console.log(error)
+                    //loadToast(error)
+
+                });
+
+            }
+        });
+        //$scope.Logout = function () {
+
+        //    window.localStorage.clear("userInfo")
+        //    window.location.reload();
+
+        //}
+
+        function ProgressLinearActive() {
+            $("#StartProgressLinear").show(function () {
+
+                $("#ProgressBgDiv").show();
+                $scope.ddeterminateValue = 15;
+                $scope.showProgressLinear = false;
+                if (!$scope.$$phase) {
+                    $scope.$apply();
+                }
+            });
+        };
+        function ProgressLinearInActive() {
+            $("#StartProgressLinear").hide(function () {
+                setTimeout(function () {
+                    $scope.ddeterminateValue = 0;
+                    $scope.showProgressLinear = true;
+                    $("#ProgressBgDiv").hide();
+                    if (!$scope.$$phase) {
+                        $scope.$apply();
+                    }
+                }, 500);
+            });
+        };
+        function loadToast(alertMessage) {
+            var el = document.querySelectorAll('#zoom');
+            $mdToast.show(
+                $mdToast.simple()
+                    .textContent(alertMessage)
+                    .position('bottom')
+                    .hideDelay(4000))
+                .then(function () {
+                    $log.log('Toast dismissed.');
+                }).catch(function () {
+                    $log.log('Toast failed or was forced to close early by another toast.');
+                });
+            if (!$scope.$$phase) {
+                $scope.$apply();
+            }
+        };
+
+        if (!$scope.$$phase) {
+            $scope.$apply();
+        }
+
+
+
+    })
+
+</script>
+
+<style>
+    md-input-container {
+        display: inline-block;
+        position: relative;
+        padding: 2px;
+        margin: -9px 0;
+        vertical-align: middle;
+    }
+
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .input-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+        .input-container input {
+            width: 93%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            padding: 1px;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+        }
+    }
+
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .login-form {
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .login-header {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    .form {
+        text-align: left;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+
+
+    /* Add more default styles here */
+    .showmenubtn {
+        display: none;
+    }
+
+    .shownavbtn {
+        display: block;
+    }
+
+    @media (max-width: 800px) {
+        .shownavbtn {
+            display: none;
+        }
+
+
+        .showmenubtn {
+            display: block;
+        }
+        /* Add more responsive styles for smaller screens here */
+    }
+    /* Media query for screens smaller than 768px */
+    @media (max-width: 1000px) {
+        .buttonstyling {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adjust width for smaller screens */
+        }
+
+        /* Add more responsive styles for smaller screens here */
+    }
+
+    @media (max-width: 768px) {
+        .buttonstyling {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adjust width for smaller screens */
+        }
+
+        /* Add more responsive styles for smaller screens here */
+    }
+
+    /* Media query for screens smaller than 480px */
+    @media (max-width: 480px) {
+        .buttonstyling {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Adjust width for even smaller screens */
+        }
+
+        /* Add more responsive styles for very small screens here */
+    }
+</style>

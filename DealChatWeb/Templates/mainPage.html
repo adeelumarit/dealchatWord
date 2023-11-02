@@ -1,0 +1,310 @@
+﻿<div ng-controller="mainpagectrl">
+    <div>
+        <md-toolbar class="md-hue-2" style="background-color: #106EBE; min-height: 10vh; height: 5vh;">
+            <div class="md-toolbar-tools" style=" justify-content: space-between;">
+                <div>
+
+                    <h3>DealChat</h3>
+                </div>
+
+                <!-- <md-button class="md-raised" ng-click="addContract(ev)" style="display: flex; align-items: center;">
+                        </md-button>
+
+            -->
+                <!--<span class="material-symbols-outlined" ng-click="addContract(ev)" style="margin-left: auto; color: white;cursor:pointer">
+                <md-tooltip md-direction="left">Add Contract</md-tooltip>
+                add_circle
+                    <div>
+            </span>-->
+                <div>
+
+                    <md-icon style="cursor:pointer" ng-click="refreshAddin()">
+                        <md-tooltip md-direction="left">
+                            Refresh
+                        </md-tooltip>
+                        refresh
+                    </md-icon>
+
+                    <md-menu md-offset="0 -7" style=" margin-right: -12px; margin-left: -12px;">
+                        <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdMenu.open($event)">
+                            <md-icon>
+                                <md-tooltip md-direction="left">
+                                    Menu
+                                </md-tooltip>menu
+                            </md-icon>
+                        </md-button>
+                        <md-menu-content width="2">
+                            <md-menu-item>
+                                <md-button ng-click="addCompany(ev)">
+                                    <span md-menu-align-target>New Deal</span>
+                                        <md-icon style=" float: right; margin-top: 6%;">add</md-icon>
+                                        <!--<md-icon class="material-symbols-outlined">add_circle</md-icon>-->
+                                </md-button>
+
+                            </md-menu-item>
+                            
+                            <md-menu-item>
+                                <md-button ng-click="addContract(ev)">
+                                    <span md-menu-align-target>Contract</span>
+                                    <md-icon style=" float: right; margin-top: 6%;" >add</md-icon>
+
+
+                                </md-button>
+
+                            </md-menu-item>
+
+                            <md-menu-item>
+                                <md-button ng-click="PostNewClause(ev)">
+                                    <span md-menu-align-target>Clause</span>
+                                    <md-icon style=" float: right; margin-top: 6%;" >add</md-icon>
+                                </md-button>
+
+                            </md-menu-item>
+
+                            <!--<md-menu-item>
+                            <md-button ng-click="addCompany()">
+                                <span md-menu-align-target>Company</span>
+                                <md-icon style=" float: right; margin-top: 6%;">add</md-icon>
+                            </md-button>
+
+                        </md-menu-item>-->
+
+                            <md-menu-item>
+                                <md-button ng-click="Logout()">
+                                    <span md-menu-align-target>Signout</span>
+                                    <md-icon style=" float: right; margin-top: 6%;">logout</md-icon>
+                                </md-button>
+
+                            </md-menu-item>
+                        </md-menu-content>
+                    </md-menu>
+
+                </div>
+
+
+            </div>
+        </md-toolbar>
+
+
+        <div ng-hide="MainContent">
+            <!--<md-content layout="column" layout-align="center center">
+            <md-button class="md-raised" ng-click="addContract(ev)">Add Contract</md-button>
+        </md-content>-->
+            <div layout="row" style="justify-content: center;">
+
+
+                <!--<select style="padding: 12px; width: 92%; margin-top: 5%;"
+                    ng-model="Selected" md-selected-text="getSelectedDeal()">
+                <option value="">Select Deal</option>
+                <option ng-repeat="options in Deals" value="{{options}}">
+                    {{options.dealName}}
+                </option>
+            </select>-->
+
+                <md-input-container style=" width: 88%;">
+                    <label>Deal</label>
+                    <md-select ng-model="Selected" ng-change="getSelectedDeal()">
+                        <md-optgroup label="Deal">
+                            <md-option ng-value="Selected"> {{Selected.dealName}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+            </div>
+            <div layout="row" style="justify-content: center;">
+
+                <md-input-container style=" width: 88%;">
+                    <label>Contract</label>
+                    <md-select ng-model="GetClauses" ng-change="GetContractClauses()">
+                        <md-optgroup label="Contract">
+                            <md-option ng-value="GetClauses"> {{GetClauses.contractName}}</md-option>
+                        </md-optgroup>
+                    </md-select>
+                </md-input-container>
+
+            </div>
+
+        
+            <!--<div style="display: flex;justify-content:center">
+            <select style="padding: 12px; width: 92%; margin-top: 5px;"
+                    ng-change="GetContractClauses()" ng-model="GetClauses">
+                <option value="">Select Contract</option>
+                <option ng-repeat="option in dealContracts" value="{{option}}">
+                    {{option.contractName}}
+                </option>
+            </select>
+        </div>-->
+            <!--<div layout="column" layout-align="center center" style="justify-content:center">
+        <md-select placeholder="Select Contract" id="contractdropdown"  ng-model="GetClauses"
+                    ng-change="GetContractClauses()" style="min-width: 200px;">
+            <md-option ng-value="option" ng-repeat="option in dealContracts">{{option.contractName}}</md-option>
+        </md-select>-->
+            <!-- <p class="md-caption">You have assigned the task to: {{ cntrs ? cntrs.Titile : 'No one yet' }}</p>-->
+            <!--</div>-->
+
+            <div layout="column" layout-align="center center" style=" padding: 5px;">
+                <!--<md-button style="width: 90%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; " ng-click="loadContracts()">
+                Load Contract
+            </md-button>-->
+
+                <md-button style="
+                   /*width: 90%;
+                   border: 3px;
+border-radius: 10px; */
+                   min-width: 100px;
+                   background: #0f6cc6;
+                   color: white;
+                   "
+                   ng-hide="LoadClauseBTN"
+                           ng-click="LoadClause()">
+                    Load Clause Data
+                </md-button>
+
+
+
+                <!--<md-button style="
+                               /*width: 90%;
+                               border: 3px;
+            border-radius: 10px; */
+                               min-width: 100px;
+                               background: #0f6cc6;
+                               color: white;
+                               "
+                               ng-click="deletemapcontent()">
+                        delete map content
+                    </md-button>-->
+                <!--<md-button style="width: 90%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; " ng-click="PostNewClause(ev)">
+                Clause from word
+            </md-button>-->
+                <!--<md-button style="width: 90%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; " ng-click="convertToPDF()">
+               convert
+            </md-button>
+
+            <md-button style="width: 90%; min-width: 100px; background: #0f6cc6; color: white; border: 3px; border-radius: 10px; " ng-click="testing()">
+                TEST DEAL
+            </md-button>-->
+                <!-- <p class="md-caption">You have assigned the task to: {{ cntrs ? cntrs.Titile : 'No one yet' }}</p>-->
+            </div>
+
+
+            <!--<md-button ng-click="dltmessage()">
+            dltmessage
+        </md-button>
+        <md-button ng-click="getmailBody()">
+            getmail
+        </md-button>-->
+
+        </div>
+
+
+        <div flex-xs flex-gt-xs="50" layout="column" style=" padding: 7px">
+            <!--<span class="md-headline" ng-hide="hidetitle"><b>{{ClasueTitleName}}:</b></span>-->
+            
+
+
+            <md-card ng-hide="!Clause"  >
+                <md-list>
+                    <md-subheader class="md-no-sticky" style="font-weight:bold">Select Clause</md-subheader>
+                    <md-divider></md-divider>
+                    <div ng-repeat="cls in Clause">
+                        <md-list-item ng-click="getselectedClause(cls)" ng-class="{ 'red-background': cls.selected }" id="listItemClauses">
+                            <p>{{ cls.name }}</p>
+                            <md-checkbox style="display:none" class="md-secondary"></md-checkbox>
+                            <md-divider></md-divider>
+                        </md-list-item>
+                    </div>
+                </md-list>
+
+
+            </md-card>
+
+
+
+
+
+            <md-card ng-repeat="alltagemailsinfo in clauseTags" id="content">
+
+                <md-card-content>
+
+                    <p style="">
+
+
+                        <b style=" font-size: 14px;">EmailBody:-</b>
+                        <span style=" font-size: 14px;">
+
+                            {{alltagemailsinfo.emailbody  | limitTo: 2 * 40}}
+                            {{alltagemailsinfo.emailbody.length > 2 * 40 ? '...' : ''}}
+
+                        </span>
+
+                    </p>
+
+                    <p style=" margin-top: -12px; display: flex;">
+
+                        <b style=" font-size: 14px;">Time:-</b>
+                        <span style=" font-size: 14px;">
+
+                            {{alltagemailsinfo.time}}
+
+                        </span>
+
+
+                        <!--<md-button style="float: right;color:white" ng-click="ViewMialBody(alltagemailsinfo)">
+                       -->
+
+                        <md-icon ng-click="ViewMialBody(alltagemailsinfo)" style="cursor:default" ng-show="alltagemailsinfo.htmlContent">
+                            <md-tooltip md-direction="left">
+                                MailContent
+                            </md-tooltip>
+                            visibility
+
+                        </md-icon>
+
+
+                        <!--</md-button>-->
+                    </p>
+                    <div>
+
+                    </div>
+            </md-card>
+        </div>
+
+    </div>
+
+</div>
+<style>
+    .red-background {
+        background-color: #0f6cc6;
+        color: white;
+        border: solid white 2px;
+        border-radius: 8px;
+    }
+
+    /*#listItemClauses:focus{
+
+        background:red
+    }
+*/
+
+    .listdemoListControls md-divider {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .listdemoListControls md-list {
+        padding-top: 0;
+    }
+
+    .listdemoListControls md-list-item > p,
+    .listdemoListControls md-list-item > .md-list-item-inner > p,
+    .listdemoListControls md-list-item .md-list-item-inner > p,
+    .listdemoListControls md-list-item .md-list-item-inner > .md-list-item-inner > p {
+        -webkit-user-select: none;
+        /* Chrome all / Safari all */
+        -moz-user-select: none;
+        /* Firefox all */
+        -ms-user-select: none;
+        /* IE 10+ */
+        user-select: none;
+        /* Likely future */
+    }
+</style>

@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34003.232
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealChat", "DealChat.csproj", "{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DealChatWeb", "..\DealChatWeb\DealChatWeb.csproj", "{715D75B0-3A56-4150-BA1B-261D0353A5D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA2DDE4-E2A9-4AE5-91D3-D820130A73F2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{715D75B0-3A56-4150-BA1B-261D0353A5D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{715D75B0-3A56-4150-BA1B-261D0353A5D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{715D75B0-3A56-4150-BA1B-261D0353A5D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{715D75B0-3A56-4150-BA1B-261D0353A5D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A6D1A276-9E8D-4817-BEEE-B673378940A5}
+	EndGlobalSection
+EndGlobal

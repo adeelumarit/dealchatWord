@@ -1,0 +1,164 @@
+﻿
+
+<md-dialog aria-label="Changes List" style="min-width: 300px;">
+    <!--<md-toolbar style="background-color: #106EBE; ">
+        <h4 style="padding:3px">DealChat</h4>-->
+    <!--<div class="md-toolbar-tools" style="color:white;">
+        <md-button ng-click="closeDialog()" style="">Cancel</md-button>
+        <md-button style="">Save</md-button>
+    </div>-->
+    <!--</md-toolbar>-->
+    <div style="color: white; text-align: center; display: flex; height: 45px; align-content: flex-start; justify-content: center; align-items: center; flex-wrap: nowrap; background: #0f6cc6;">
+        <h3>New Clause</h3>
+
+
+
+    </div>
+    <md-divider></md-divider>
+
+    <md-dialog-content style="margin-top:20px;">
+
+        <div class="md-dialog-content" style="padding:5px;">
+            <fieldset>
+                <md-checkbox class="md-primary"
+                             aria-label="Select All"
+                             ng-checked="isChecked()"
+                             md-indeterminate="isIndeterminate()"
+                             ng-click="toggleAll()">
+                    <span ng-if="isChecked()"><b>Un-</b></span><b>Select All</b>
+                </md-checkbox>
+                <md-divider style=" padding-bottom: 6px;"></md-divider>
+                <div class="demo-select-all-checkboxes " ng-repeat="item in filteredBoldLines track by $index">
+                    <md-checkbox class="md-primary" ng-checked="exists(item, selected)" ng-click="toggle(item, selected)">
+                        {{item  | limitTo: 2 * 10}}
+                        {{item.length > 2 * 10 ? '...' : ''}}
+                    </md-checkbox>
+                </div>
+            </fieldset>
+            <!--<md-list>
+
+        <md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
+        <md-list-item ng-repeat="item in boldLines">
+            <p> {{ item }} </p>
+            <md-checkbox class="md-primary" ng-checked="exists(item, selected)" ng-click="toggle(item, selected, selectedItems)">
+                {{ item }} <span ng-if="exists(item, selected)">selected</span>
+            </md-checkbox>
+            <md-divider></md-divider>
+
+        </md-list-item>
+    </md-list>-->
+            <div flex="100" flex-gt-sm="50" layout="column">
+                <!--
+          In IE, we cannot apply flex directly to <fieldset>
+          @see https://github.com/philipwalton/flexbugs#9-some-html-elements-cant-be-flex-containers
+        -->
+                <!--<fieldset class="standard">-->
+                <!--<div layout="row" layout-wrap flex>
+            <div ng-repeat="item in items">
+
+            </div>
+        </div>-->
+                <!--</fieldset>-->
+          <!--  -->  </div>
+            <!--<div flex="100">
+                <h2 class="md-title">Selected Items</h2>
+                <code style="display: block; padding: 8px;">{{selected | json}}</code>
+            </div>-->
+
+            <!--<form name="Form">
+    <div class="container">
+
+
+        <div class="input-container">-->
+            <!--<label for="contractTitle">Contract Title:</label>-->
+            <!--<input type="text" id="contractTitle" ng-model="ClauseTitle" name="Clause" placeholder="Enter Contract Title">
+        </div>
+    </div>
+
+
+
+    <div></div>
+    <div class="input-container">-->
+            <!--<label for="contractTitle">Contract Description:</label>-->
+            <!--<textarea ng-model="ClauseDetail" placeholder="Enter Clause Details"></textarea>
+
+    </div>-->
+            <!--<div class="input-container" style="display: flex;">
+        <select style="padding: 12px; width: 100%; margin-bottom: 5px;"
+                ng-model="SelectedDeals" ng-change="getSelectedDeal()">
+            <option value="">Select Deal</option>
+            <option ng-repeat="option in Deals" value="{{option}}">
+                {{option.dealName}}
+            </option>
+        </select>
+    </div>-->
+            <!--</form>-->
+
+      <!--  -->  </div>
+</md-dialog-content>
+
+    <md-dialog-actions layout="row" style=" justify-content: space-between; ">
+        <!--style="background: #0f6cc6;color:white"-->
+        <md-button class="md-primary" ng-click="closeDialog()">
+            Cancel
+        </md-button>
+        <md-button class="custom-button md-primary" ng-click="Save('useful')" style="margin-right: 20px;">
+            Save
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
+
+<style>
+    .custom-button[disabled] {
+        background-color: #ccc;
+        color: #999;
+        cursor: not-allowed;
+    }
+
+    textarea {
+        width: 100%;
+        max-width: 500px; /* Adjust the max-width as needed */
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    md-input-container {
+        display: inline-block;
+        position: relative;
+        padding: 2px;
+        margin: -9px 0;
+        vertical-align: middle;
+    }
+
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .input-container {
+        position: relative;
+        margin-bottom: 20px;
+    }
+
+        .input-container input {
+            width: 93%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+    @media screen and (max-width: 768px) {
+        .container {
+            padding: 1px;
+        }
+
+        .input-container {
+            margin-bottom: 10px;
+        }
+    }
+</style>
+

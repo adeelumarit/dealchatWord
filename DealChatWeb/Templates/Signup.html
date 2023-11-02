@@ -1,0 +1,99 @@
+﻿<div ng-controller="Signupctrl">
+    <md-toolbar class="custom-toolbar">
+        <div class="md-toolbar-tools">
+            <h2 flex md-truncate>DealChat</h2>
+        </div>
+    </md-toolbar>
+    <md-card class="custom-card" style="display:math">
+        <div layout="column">
+
+            <div style="display:flex;justify-content:center">
+
+                <h3>Deal Chat</h3>
+
+            </div>
+
+        </div>
+
+
+        <div layout="column" style="padding: 8px; margin-top: -12px;">
+
+
+            <md-input-container class="md-block" style="margin-bottom: -19px;">
+                <input type="text" placeholder="Name" ng-model="user_name">
+            </md-input-container>
+
+
+        </div>
+
+        <div layout="column" style="padding: 8px; margin-top: 5%;">
+
+            <md-input-container class="md-block custom-input">
+                <input type="email" placeholder="Email " ng-model="user_email">
+            </md-input-container>
+
+        </div>
+        <div layout="column" style="padding:8px">
+
+            <md-input-container class="md-block custom-input">
+                <input type="password" placeholder="Password " ng-model="user_password">
+            </md-input-container>
+
+        </div>
+
+        <div layout="column">
+
+            <div class="button-container" style="display: flex; justify-content: center ">
+                <md-button class="md-raised md-primary"
+                           ng-disabled=" !user_name && user_email && user_password "
+                           ng-click="create_User()"
+                           style="width:69%">SignUp</md-button>
+            </div>
+
+
+        </div>
+
+
+        <!--<div layout="column">
+
+            <div class="button-container" style="display: flex; justify-content: center ">
+                <a class="md-raised md-primary" ng-click="GotoSingIn()" style="cursor:pointer">SignIn</a>
+            </div>
+
+
+        </div>-->
+
+
+        <div layout="column">
+
+            <div class="button-container" style="display: flex; justify-content: center ">
+                <span>
+                    Already have account
+                    <a style="cursor: pointer; color: #0f6cc6; text-decoration: underline; " ng-click="GotoSingIn()">SignIn</a>
+                </span>
+            </div>
+
+
+        </div>
+    </md-card>
+</div>
+<style>
+    .custom-toolbar {
+        background-color: #0f6cc6;
+        color: white;
+    }
+
+    md-input-container {
+        display: inline-block;
+        position: relative;
+        padding: 2px;
+         margin:unset; 
+        vertical-align: middle;
+    }
+
+    /*   @media screen and (max-width: 600px) {
+        .custom-card {
+            margin: 20px;
+        }*/
+
+</style>

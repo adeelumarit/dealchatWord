@@ -1,0 +1,5 @@
+E:\Project\DealChat\obj\Debug\DealChat.csproj.AssemblyReference.cache
+E:\Project\DealChat\obj\Debug\DealChat.csproj.CoreCompileInputs.cache
+E:\DealChatPhaseSecond\DealChatWordAddinPhaseSecond\DealChatWordAddin\DealChat\obj\Debug\DealChat.csproj.AssemblyReference.cache
+E:\DealChatPhaseSecond\DealChatWordAddinPhaseSecond\DealChatWordAddin\DealChat\obj\Debug\DealChat.csproj.CoreCompileInputs.cache
+E:\DealChatPhaseSecond\DealChatWordAddinPhaseSecond\DealChatWordAddin\DealChat\bin\Debug\DealChat.dll.config

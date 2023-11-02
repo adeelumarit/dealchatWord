@@ -1,0 +1,7 @@
+False
+072c7caf-2ec1-44fd-a864-e3ab7ca0fb080299a0aa-54a3-4ccb-98c1-c53979c1005e
+{43af1e12-a5a4-4147-9d67-fdc990718a65}{5ed06683-d5af-467f-9935-631a47e98c50}
+{aba12269-cec9-45db-b43f-dd8636a3894d}
+1.0.0.0
+DealChat
+_layouts/15/
