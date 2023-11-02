@@ -1299,7 +1299,7 @@ app.controller('DealChatCTRL', function ($scope, $mdDialog, $mdToast, $log, $loc
                     };
                     $scope.Save = function () {
                         ProgressLinearActive();
-                        if (selcteddealInfo.id) {
+                        if (selcteddealInfo) {
                             $.ajax({
                                 type: "POST",
                                 url: baseURL + "/api/Home/NewContract", // The URL of your controller action
