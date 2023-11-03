@@ -1354,7 +1354,7 @@ app.controller('DealChatCTRL', function ($scope, $mdDialog, $mdToast, $log, $loc
                                 }
                             });
                         } else {
-                            laodToast("Deal not selected")
+                            loadToast("Deal not selected")
                             ProgressLinearInActive()
 
                         }
